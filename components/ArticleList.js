@@ -1,12 +1,7 @@
-import { useUnit } from "effector-react";
 import { useState } from "react";
 
 export default function ArticleList({ articles, openArticleWithTitle }) {
   const [query, setQuery] = useState("");
-
-  const { _articles } = useUnit({
-    _articles: articles,
-  });
 
   const updateQuery = ({ target: { value } }) => setQuery(value);
 
@@ -22,7 +17,7 @@ export default function ArticleList({ articles, openArticleWithTitle }) {
         placeholder="Поиск..."
         className="w-full rounded-lg px-3 py-1"
       />
-      {_articles
+      {articles
         .filter((a) => (query !== "" ? a.title.toLowerCase().startsWith(query.trim()) : true))
         .map((a, i) => (
           <div key={i}>

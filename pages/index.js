@@ -3,26 +3,23 @@ import AddArticleForm from "@/components/AddArticleForm";
 import Article from "@/components/Article";
 import { useState } from "react";
 import { useUnit } from "effector-react";
+import { $articles } from "@/utils/state";
 
-export default function Home({ articles, addNewArticle, addComment }) {
+export default function Home() {
   const [page, setPage] = useState("/");
-  const [article, setArticle] = useState(-1);
+  const [articleTitle, setArticleTitle] = useState(-1);
 
   const newPage = () => setPage("/new");
   const homePage = () => setPage("/");
 
-  const { _articles } = useUnit({ _articles: articles });
+  const { articles } = useUnit({ articles: $articles });
 
   function openArticleWithTitle(title) {
-    setArticle(_articles.find((a) => a.title === title));
+    setArticleTitle(articles.find((a) => a.title === title).title);
   }
 
-  return article !== -1 ? (
-    <Article
-      article={article}
-      setArticle={setArticle}
-      addComment={addComment}
-    />
+  return articleTitle !== -1 ? (
+    <Article articleTitle={articleTitle} setArticleTitle={setArticleTitle} />
   ) : page === "/" ? (
     <>
       <button

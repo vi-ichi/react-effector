@@ -1,37 +1,13 @@
 import "@/styles/globals.css";
-import { createStore, createEvent } from "effector";
+import { $articles } from "@/utils/state";
+import {
+  addNewArticle,
+  addComment,
+  deleteArticle,
+  editArticle,
+} from "@/utils/state";
 
-const addNewArticle = createEvent();
-const deleteArticle = createEvent();
-const addComment = createEvent();
-const editArticle = createEvent();
-
-const $articles = createStore([
-  {
-    title: "Война и мир",
-    content: "Очень много воды",
-    theme: "Лонгрид",
-    author: "Лев Толстой",
-    date: "01.09.1990",
-    comments: [],
-  },
-  {
-    title: "Сто лет одиночества",
-    content: "Очень много смысла",
-    theme: "Пустота",
-    author: "Габриэль Гарсиа Маркес",
-    date: "02.09.1990",
-    comments: [],
-  },
-  {
-    title: "Над пропастью во ржи",
-    content: "Очень много грусти",
-    theme: "Сказка",
-    author: "Джером Сэлинджер",
-    date: "03.09.1990",
-    comments: [],
-  },
-])
+$articles
   .on(addNewArticle, (all, newArticle) => [...all, newArticle])
   .on(addComment, (all, data) =>
     all.map((a) =>
@@ -53,14 +29,5 @@ const $articles = createStore([
   );
 
 export default function App({ Component, pageProps }) {
-  return (
-    <Component
-      {...pageProps}
-      articles={$articles}
-      addNewArticle={addNewArticle}
-      editArticle={editArticle}
-      deleteArticle={deleteArticle}
-      addComment={addComment}
-    />
-  );
+  return <Component {...pageProps} />;
 }

@@ -1,16 +1,20 @@
 import { useUnit } from "effector-react";
 import { useState } from "react";
+import { addComment } from "@/utils/state";
+import { $articles } from "@/utils/state";
 
-export default function Article({ article, setArticle, addComment }) {
+export default function Article({ articleTitle, setArticleTitle }) {
   const [comment, setComment] = useState("");
+
+  const { articles } = useUnit({ articles: $articles });
+  const article = articles.find((a) => a.title === articleTitle);
 
   const _addComment = useUnit(addComment);
 
   const updateComment = ({ target: { value } }) => setComment(value);
 
   function handleAddComment() {
-    _addComment({ title: article.title, newComment: comment });
-    setArticle(-1);
+    _addComment({ title: articleTitle, newComment: comment });
   }
 
   return (
@@ -30,8 +34,11 @@ export default function Article({ article, setArticle, addComment }) {
           <div>{article.theme}</div>
           <div>{article.date}</div>
         </div>
-        <div className="text-xl py-8">{article.content}</div>
-        <div>Комментарии</div>
+        <div className="text-xl py-4">{article.content}</div>
+        <div>
+          Комментарии{" "}
+          <span className="text-gray-500">{article.comments.length}</span>
+        </div>
         <input
           value={comment}
           onChange={updateComment}
@@ -40,7 +47,7 @@ export default function Article({ article, setArticle, addComment }) {
         />
         <button
           onClick={handleAddComment}
-          className="bg-blue-500 px-3 py-1 rounded-full font-bold"
+          className="bg-blue-500 px-3 py-1 rounded-full font-bold !mt-4"
         >
           + добавить
         </button>

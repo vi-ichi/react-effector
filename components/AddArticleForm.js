@@ -1,8 +1,7 @@
 import { useState } from "react";
-import Link from "next/link";
 import { useUnit } from "effector-react";
 
-export default function AddArticleForm({ addNewArticle }) {
+export default function AddArticleForm({ addNewArticle, setPage }) {
   const [title, setTitle] = useState("");
   const [theme, setTheme] = useState("");
   const [author, setAuthor] = useState("");
@@ -25,7 +24,7 @@ export default function AddArticleForm({ addNewArticle }) {
       author,
       theme,
     });
-    location.href = "/";
+    setPage("/");
   }
 
   return (
@@ -37,11 +36,12 @@ export default function AddArticleForm({ addNewArticle }) {
         >
           + опубликовать
         </button>
-        <Link href="/">
-          <button className="bg-red-500 px-3 py-1 rounded-full font-bold">
-            - удалить
-          </button>
-        </Link>
+        <button
+          onClick={() => setPage("/")}
+          className="bg-red-500 px-3 py-1 rounded-full font-bold"
+        >
+          - удалить
+        </button>
       </div>
       <div className="pt-16 mx-auto max-w-sm space-y-2">
         <div>

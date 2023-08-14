@@ -6,7 +6,7 @@ export default function ArticleList({ articles }) {
   });
 
   return (
-    <div className="p-8 pt-16">
+    <div className="p-8 pt-16 space-y-8">
       {_articles.map((a, i) => (
         <div key={i}>
           <div className="text-xl font-bold">{a.title}</div>

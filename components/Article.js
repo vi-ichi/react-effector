@@ -21,7 +21,7 @@ export default function Article({ articleTitle, setArticleTitle }) {
     <div>
       <div className="absolute left-1/2 -translate-x-1/2 mt-4 space-x-4">
         <button
-          onClick={() => setArticle(-1)}
+          onClick={() => setArticleTitle(-1)}
           className="bg-red-500 px-3 py-1 rounded-full font-bold"
         >
           - назад

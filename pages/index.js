@@ -4,7 +4,7 @@ import Article from "@/components/Article";
 import { useState } from "react";
 import { useUnit } from "effector-react";
 
-export default function Home({ articles, addNewArticle }) {
+export default function Home({ articles, addNewArticle, addComment }) {
   const [page, setPage] = useState("/");
   const [article, setArticle] = useState(-1);
 
@@ -18,7 +18,11 @@ export default function Home({ articles, addNewArticle }) {
   }
 
   return article !== -1 ? (
-    <Article article={article} setArticle={setArticle} />
+    <Article
+      article={article}
+      setArticle={setArticle}
+      addComment={addComment}
+    />
   ) : page === "/" ? (
     <>
       <button

@@ -10,7 +10,7 @@ export default function ArticleList({ articles, openArticleWithTitle }) {
   }
 
   return (
-    <div className="p-8 pt-16 space-y-8">
+    <div className="p-8 pt-16 space-y-8 mx-auto max-w-xl">
       {_articles.map((a, i) => (
         <div key={i}>
           <button

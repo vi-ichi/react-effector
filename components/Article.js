@@ -52,9 +52,9 @@ export default function Article({ articleTitle, setArticleTitle }) {
           + добавить
         </button>
         {article.comments.length > 0 && (
-          <div>
+          <div className="space-y-2">
             {article.comments.map((c, i) => (
-              <div key={i}>{c}</div>
+              <div key={i}>// {c}</div>
             ))}
           </div>
         )}

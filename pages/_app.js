@@ -14,5 +14,11 @@ const $articles = createStore([
 ]).on(addNewArticle, (all, newArticle) => [...all, newArticle]);
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} articles={$articles} />;
+  return (
+    <Component
+      {...pageProps}
+      articles={$articles}
+      addNewArticle={addNewArticle}
+    />
+  );
 }

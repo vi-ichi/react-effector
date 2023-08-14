@@ -15,6 +15,22 @@ const $articles = createStore([
     date: "01.09.1990",
     comments: [],
   },
+  {
+    title: "Сто лет одиночества",
+    content: "Очень много смысла",
+    theme: "Пустота",
+    author: "Габриэль Гарсиа Маркес",
+    date: "02.09.1990",
+    comments: [],
+  },
+  {
+    title: "Над пропастью во ржи",
+    content: "Очень много грусти",
+    theme: "Сказка",
+    author: "Джером Сэлинджер",
+    date: "03.09.1990",
+    comments: [],
+  },
 ])
   .on(addNewArticle, (all, newArticle) => [...all, newArticle])
   .on(addComment, (all, data) =>

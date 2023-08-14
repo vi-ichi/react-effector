@@ -30,7 +30,7 @@ export default function Article({ article, setArticle, addComment }) {
           <div>{article.theme}</div>
           <div>{article.date}</div>
         </div>
-        <div className="text-xl">{article.content}</div>
+        <div className="text-xl py-8">{article.content}</div>
         <div>Комментарии</div>
         <input
           value={comment}

@@ -15,10 +15,11 @@ export default function Article({ articleTitle, setArticleTitle }) {
 
   function handleAddComment() {
     _addComment({ title: articleTitle, newComment: comment });
+    setComment("");
   }
 
   return (
-    <div>
+    <div className="px-4">
       <div className="absolute left-1/2 -translate-x-1/2 mt-4 space-x-4">
         <button
           onClick={() => setArticleTitle(-1)}

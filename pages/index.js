@@ -10,7 +10,6 @@ export default function Home() {
   const [articleTitle, setArticleTitle] = useState(-1);
 
   const newPage = () => setPage("/new");
-  const homePage = () => setPage("/");
 
   const { articles } = useUnit({ articles: $articles });
 
@@ -34,7 +33,7 @@ export default function Home() {
       />
     </>
   ) : page === "/new" ? (
-    <AddArticleForm addNewArticle={addNewArticle} setPage={setPage} />
+    <AddArticleForm setPage={setPage} />
   ) : (
     "nothing"
   );

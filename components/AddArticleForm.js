@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useUnit } from "effector-react";
+import { addNewArticle } from "@/utils/state";
 
-export default function AddArticleForm({ addNewArticle, setPage }) {
+export default function AddArticleForm({ setPage }) {
   const [title, setTitle] = useState("");
   const [theme, setTheme] = useState("");
   const [author, setAuthor] = useState("");
@@ -28,17 +29,17 @@ export default function AddArticleForm({ addNewArticle, setPage }) {
   }
 
   return (
-    <div>
-      <div className="absolute left-1/2 -translate-x-1/2 mt-4 space-x-4">
+    <div className="px-4">
+      <div className="absolute flex left-1/2 -translate-x-1/2 mt-4 space-x-4">
         <button
           onClick={createNewArticle}
-          className="bg-blue-500 px-3 py-1 rounded-full font-bold"
+          className="whitespace-nowrap bg-blue-500 px-3 py-1 rounded-full font-bold"
         >
           + опубликовать
         </button>
         <button
           onClick={() => setPage("/")}
-          className="bg-red-500 px-3 py-1 rounded-full font-bold"
+          className="whitespace-nowrap bg-red-500 px-3 py-1 rounded-full font-bold"
         >
           - удалить
         </button>

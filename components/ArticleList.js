@@ -10,7 +10,7 @@ export default function ArticleList({ articles, openArticleWithTitle }) {
   }
 
   return (
-    <div className="p-8 pt-16 space-y-8 mx-auto max-w-xl">
+    <div className="px-4 pt-16 space-y-8 mx-auto max-w-xl">
       <input
         value={query}
         onChange={updateQuery}
@@ -18,7 +18,7 @@ export default function ArticleList({ articles, openArticleWithTitle }) {
         className="w-full rounded-lg px-3 py-1"
       />
       {articles
-        .filter((a) => (query !== "" ? a.title.toLowerCase().startsWith(query.trim()) : true))
+        .filter((a) => (query !== "" ? a.title.toLowerCase().startsWith(query.trim().toLowerCase()) : true))
         .map((a, i) => (
           <div key={i}>
             <button

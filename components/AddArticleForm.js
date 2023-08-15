@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUnit } from "effector-react";
 import { addNewArticle } from "@/utils/state";
 
@@ -8,6 +8,11 @@ export default function AddArticleForm({ setPage }) {
   const [author, setAuthor] = useState("");
   const [date, setDate] = useState("");
   const [content, setContent] = useState("");
+  const [valid, setValid] = useState(false);
+
+  useEffect(() => {
+    setValid(title && theme && author && date && content);
+  }, [title, theme, author, date, content]);
 
   const updateTitle = ({ target: { value } }) => setTitle(value);
   const updateTheme = ({ target: { value } }) => setTheme(value);
@@ -18,12 +23,17 @@ export default function AddArticleForm({ setPage }) {
   const _addNewArticle = useUnit(addNewArticle);
 
   function createNewArticle() {
+    if (!valid) {
+      return;
+    }
+
     _addNewArticle({
-      title,
-      content,
-      date,
-      author,
-      theme,
+      title: title.trim(),
+      content: content.trim(),
+      date: date.trim(),
+      author: author.trim(),
+      theme: theme.trim(),
+      comments: [],
     });
     setPage("/");
   }
@@ -33,7 +43,9 @@ export default function AddArticleForm({ setPage }) {
       <div className="absolute flex left-1/2 -translate-x-1/2 mt-4 space-x-4">
         <button
           onClick={createNewArticle}
-          className="whitespace-nowrap bg-blue-500 px-3 py-1 rounded-full font-bold"
+          className={`whitespace-nowrap ${
+            !valid ? "bg-gray-500 cursor-not-allowed" : "bg-blue-500"
+          } px-3 py-1 rounded-full font-bold`}
         >
           + опубликовать
         </button>
